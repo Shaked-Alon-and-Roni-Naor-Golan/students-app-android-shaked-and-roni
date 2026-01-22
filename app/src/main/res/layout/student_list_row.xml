@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="2dp"
+    app:cardUseCompatPadding="true"
+    android:layout_marginBottom="2dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="14dp">
+
+        <!-- Avatar (circular) -->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/student_row_image_view"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:contentDescription="@string/app_name"
+            android:scaleType="centerCrop"
+            app:shapeAppearanceOverlay="@style/ShapeOverlayCircular"
+            app:srcCompat="@drawable/student_avatar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <!-- Checkbox -->
+        <CheckBox
+            android:id="@+id/student_row_check_box"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <!-- Checked / Not checked text (next to checkbox) -->
+        <TextView
+            android:id="@+id/student_row_checked_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="Not checked"
+            android:textSize="12sp"
+            android:alpha="0.75"
+            app:layout_constraintEnd_toStartOf="@id/student_row_check_box"
+            app:layout_constraintTop_toTopOf="@id/student_row_check_box"
+            app:layout_constraintBottom_toBottomOf="@id/student_row_check_box" />
+
+        <!-- Name -->
+        <TextView
+            android:id="@+id/student_row_name_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="Student Name"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:ellipsize="end"
+            app:layout_constraintStart_toEndOf="@id/student_row_image_view"
+            app:layout_constraintEnd_toStartOf="@id/student_row_checked_text_view"
+            app:layout_constraintTop_toTopOf="@id/student_row_image_view" />
+
+        <!-- ID -->
+        <TextView
+            android:id="@+id/student_row_id_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="4dp"
+            android:text="123456789"
+            android:alpha="0.75"
+            android:maxLines="1"
+            android:ellipsize="end"
+            app:layout_constraintStart_toEndOf="@id/student_row_image_view"
+            app:layout_constraintEnd_toStartOf="@id/student_row_checked_text_view"
+            app:layout_constraintTop_toBottomOf="@id/student_row_name_text_view" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

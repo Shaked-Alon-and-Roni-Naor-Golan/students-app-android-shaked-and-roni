@@ -1,0 +1,17 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="Base.Theme.studentsapp" parent="Theme.Material3.DayNight.NoActionBar">
+
+        <!-- Primary color (buttons, highlights, etc.) -->
+        <item name="colorPrimary">@color/teal_primary</item>
+        <item name="colorOnPrimary">@color/teal_on_primary</item>
+
+        <!-- Material 3 containers -->
+        <item name="colorPrimaryContainer">@color/teal_primary</item>
+        <item name="colorOnPrimaryContainer">@color/teal_on_primary</item>
+
+    </style>
+
+    <style name="Theme.studentsapp" parent="Base.Theme.studentsapp" />
+
+</resources>
