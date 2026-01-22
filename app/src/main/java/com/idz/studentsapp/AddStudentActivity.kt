@@ -6,6 +6,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.checkbox.MaterialCheckBox
 import com.google.android.material.textfield.TextInputEditText
@@ -24,6 +25,15 @@ class AddStudentActivity : AppCompatActivity() {
             insets
         }
 
+        // Toolbar as ActionBar + back arrow
+        val toolbar = findViewById<MaterialToolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.title = getString(R.string.title_add_student)
+        toolbar.setNavigationIcon(androidx.appcompat.R.drawable.abc_ic_ab_back_material)
+        toolbar.setNavigationOnClickListener { onBackPressedDispatcher.onBackPressed() }
+
         val saveButton = findViewById<MaterialButton>(R.id.add_student_activity_save_button)
         val cancelButton = findViewById<MaterialButton>(R.id.add_student_activity_cancel_button)
 
@@ -38,7 +48,6 @@ class AddStudentActivity : AppCompatActivity() {
             checkedBox.text = if (checkedBox.isChecked) "Checked" else "Not checked"
         }
 
-        // מצב התחלתי
         checkedBox.isChecked = false
         updateCheckedText()
 
@@ -61,9 +70,7 @@ class AddStudentActivity : AppCompatActivity() {
             )
 
             Model.shared.students.add(student)
-
-            val intent = Intent(this, StudentsRecyclerViewActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, StudentsRecyclerViewActivity::class.java))
         }
     }
 }

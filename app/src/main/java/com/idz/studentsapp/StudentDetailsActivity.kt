@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.checkbox.MaterialCheckBox
 import com.idz.studentsapp.model.Model
@@ -25,6 +26,15 @@ class StudentDetailsActivity : AppCompatActivity() {
             insets
         }
 
+        // Toolbar as ActionBar + back arrow
+        val toolbar = findViewById<MaterialToolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.title = getString(R.string.title_student_details)
+        toolbar.setNavigationIcon(androidx.appcompat.R.drawable.abc_ic_ab_back_material)
+        toolbar.setNavigationOnClickListener { onBackPressedDispatcher.onBackPressed() }
+
         val studentId = intent.getIntExtra("studentId", 0)
         val students = Model.shared.students
 
@@ -41,14 +51,10 @@ class StudentDetailsActivity : AppCompatActivity() {
         idText.text = currStudent?.id ?: ""
         phoneText.text = currStudent?.phoneNumber ?: ""
         addressText.text = currStudent?.address ?: ""
+
         val isChecked = currStudent?.isChecked ?: false
         checkbox.isChecked = isChecked
-        checkbox.text = if (isChecked) {
-            "Checked"
-        } else {
-            "Not checked"
-        }
-
+        checkbox.text = if (isChecked) "Checked" else "Not checked"
 
         val backButton = findViewById<MaterialButton>(R.id.student_details_back_button)
         val editButton = findViewById<MaterialButton>(R.id.student_details_edit_button)

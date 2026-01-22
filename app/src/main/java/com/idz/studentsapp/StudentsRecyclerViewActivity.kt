@@ -14,6 +14,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.appbar.MaterialToolbar
 import com.idz.studentsapp.model.Model
 import com.idz.studentsapp.model.Student
 
@@ -37,6 +38,13 @@ class StudentsRecyclerViewActivity : AppCompatActivity() {
             insets
         }
 
+        // Toolbar as ActionBar (title + subtitle)
+        val toolbar = findViewById<MaterialToolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        supportActionBar?.title = getString(R.string.app_name)          // Students App
+        supportActionBar?.subtitle = getString(R.string.title_students_list) // Students list
+
         students = Model.shared.students
 
         val recyclerView: RecyclerView = findViewById(R.id.students_recycler_view)
@@ -44,8 +52,7 @@ class StudentsRecyclerViewActivity : AppCompatActivity() {
 
         val addStudentButton = findViewById<Button>(R.id.activity_students_recycler_view_add_student_button)
         addStudentButton.setOnClickListener {
-            val intent = Intent(this, AddStudentActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, AddStudentActivity::class.java))
         }
 
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -87,8 +94,6 @@ class StudentsRecyclerViewActivity : AppCompatActivity() {
             checkBox?.setOnClickListener { view ->
                 val newValue = (view as? CheckBox)?.isChecked ?: false
                 student?.isChecked = newValue
-
-                // עדכון הטקסט ליד הצ'קבוקס
                 checkedTextView?.text = if (newValue) "Checked" else "Not checked"
             }
 

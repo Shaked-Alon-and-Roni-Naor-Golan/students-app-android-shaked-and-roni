@@ -6,6 +6,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.checkbox.MaterialCheckBox
 import com.google.android.material.textfield.TextInputEditText
@@ -23,6 +24,18 @@ class EditStudentActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        // Toolbar + back arrow
+        val toolbar = findViewById<MaterialToolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.title = getString(R.string.title_edit_student)
+        toolbar.setNavigationIcon(androidx.appcompat.R.drawable.abc_ic_ab_back_material)
+        toolbar.setNavigationOnClickListener { onBackPressedDispatcher.onBackPressed() }
+
+        // Title for this screen
+        supportActionBar?.title = getString(R.string.title_edit_student)
 
         val studentId = intent.getIntExtra("studentId", 0)
         val students = Model.shared.students
@@ -44,11 +57,9 @@ class EditStudentActivity : AppCompatActivity() {
             checkbox.text = if (checkbox.isChecked) "Checked" else "Not checked"
         }
 
-        // מצב התחלתי + טקסט מתאים
         checkbox.isChecked = currStudent?.isChecked ?: false
         updateCheckedText()
 
-        // עדכון טקסט בזמן שינוי
         checkbox.setOnCheckedChangeListener { _, _ ->
             updateCheckedText()
         }

@@ -2,6 +2,8 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="teal_primary">#2D8C90</color>
-    <color name="teal_on_primary">#FFFFFF</color>
+
+    <!-- More sky-blue (less turquoise) -->
+    <color name="teal_primary">#6fa0b0</color>
+    <color name="teal_on_primary">#ffffff</color>
 </resources>
